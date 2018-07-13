@@ -71,6 +71,8 @@ void loop(){
       printErrorCode("positioning", tags[i]);
     }
   }
+  Serial.print("Buffer size is:");
+  Serial.println(BUFFER_LENGTH);
 }
 
 // prints the coordinates for either humans or for processing

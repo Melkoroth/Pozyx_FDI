@@ -9,7 +9,7 @@ import java.lang.Math.*;
 boolean serial = true;          // set to true to use Serial, false to use OSC messages.
 
 int oscPort = 8888;               // change this to your UDP port
-String serialPort = "/dev/ttyUSB0";      // change this to your COM port 
+String serialPort = "/dev/ttyACM0";      // change this to your COM port 
 
 int positionHistoryLength = 10;
 
