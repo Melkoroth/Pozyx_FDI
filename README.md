@@ -24,4 +24,7 @@ For this experiment the base boards are two SAMD21 based [Adafruit METRO M0 Expr
 
 ---
 
+## More info:
+* Platformio docs on ATMELSAM: http://docs.platformio.org/en/latest/platforms/atmelsam.html
+
 Enjoy.
