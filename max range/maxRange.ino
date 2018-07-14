@@ -78,7 +78,9 @@ void setup() {
 
 void loop() {
 	rainbow(10);
-	Serial.print("-");
+	Serial.print("Free RAM: ");
+	Serial.print(freeRam());
+	Serial.println(" Bytes");
 }
 
 
@@ -106,6 +108,15 @@ uint32_t Wheel(byte WheelPos) {
   }
   WheelPos -= 170;
   return pixel.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+}
+
+
+//Check memory available - MAX 32K
+extern "C" char *sbrk(int i);
+ 
+int freeRam() {
+  char stack_dummy = 0;
+  return &stack_dummy - sbrk(0);
 }
 
 /*
@@ -200,4 +211,43 @@ void serialEvent() {
   }
 }
 
+*/
+
+/* 
+//ASSERT
+#define __ASSERT_USE_STDERR
+#include <assert.h>
+
+extern void __assert(
+    const char *__func,
+    const char *__file,
+    int __lineno,
+    const char *__sexp )
+{
+  // Put your stuff here.
+  // __func is the function name (setup)
+  // __file is the module name (the name of your sketch)
+  // __lineno is the source code line number of the assert
+  // __sexp is the assert expression (as a C string)
+
+  Serial.print( F( "ASSERT FAILURE: " ) );
+  Serial.print( __file );
+  Serial.print( F( ": " ) );
+  Serial.print( __func );
+  Serial.print( F( ": #" ) );
+  Serial.print( __lineno );
+  Serial.println();
+  Serial.flush ();
+  noInterrupts ();
+  while (true) { }   // give up
+}
+
+void setup( void )
+{
+  assert( false );
+}
+
+void loop( void )
+{
+}
 */
