@@ -3,38 +3,77 @@ Pozyx tests for max range
 Juan L. Pérez Díez
 
 */
-
 #include <Pozyx.h>
 #include <Pozyx_definitions.h>
 #include <Wire.h>
+#include <SPI.h>
+#include <Adafruit_SPIFlash.h>
+#include <Adafruit_SPIFlash_FatFs.h>
 #include <Adafruit_NeoPixel.h>
 
-const uint8_t neoPixelPin = 40;
+//SPI Flash 2MB memory
+#define FLASH_TYPE	SPIFLASHTYPE_W25Q16BV
+#define FLASH_SS       SS1                    // Flash chip SS pin.
+#define FLASH_SPI_PORT SPI1                   // What SPI port is Flash on?
+Adafruit_SPIFlash flash(FLASH_SS, &FLASH_SPI_PORT);     // Use hardware SPI
+Adafruit_W25Q16BV_FatFs fatfs(flash);
 
+//NeoPixel
+const uint8_t neoPixelPin = 40;
 Adafruit_NeoPixel pixel = Adafruit_NeoPixel(1, neoPixelPin, NEO_GRB + NEO_KHZ800);
 
-uint16_t myID; 
+//Pozyx ID
+uint16_t myID = 0; 
 
 void setup() {
-	Serial.begin(115200);
-	pixel.begin();
+	boolean failInit = false;
 
+	Serial.begin(115200);
+	//Waits for usb connection before continuing
+	//while (!Serial);
+	Serial.println();
+	Serial.println(".::[ Pozyx max range experiment - Juan L. Pérez Díez ]::.");
+
+	// Initialize flash library and check its chip ID.
+	if (!flash.begin(FLASH_TYPE)) {
+		Serial.println(F("ERROR:, failed to initialize flash chip!"));
+		failInit = true;
+	} else {
+		Serial.print(F("Flash chip JEDEC ID: 0x")); 
+		Serial.println(flash.GetJEDECID(), HEX);
+	}
+
+	//Init filesystem
+	if (!fatfs.begin()) {
+		Serial.println(F("ERROR: failed to mount newly formatted filesystem!"));
+		Serial.println(F("Was the flash chip formatted with the fatfs_format example?"));
+		failInit = true;
+	} else
+	Serial.println(F("Mounted filesystem!"));
+
+	//Init pozyx
 	if(Pozyx.begin() == POZYX_FAILURE) {
-		Serial.println(F("ERROR: Unable to connect to shield"));
-		//Red led
+		Serial.println(F("ERROR: Unable to connect to pozyx shield"));
+    	failInit = true;
+	} else {
+		// read the network id of this device
+  		Pozyx.regRead(POZYX_NETWORK_ID, (uint8_t*)&myID, 2);
+  		Serial.print("Pozyx ID: ");
+  		Serial.println(myID, HEX);
+  	}
+
+  	pixel.begin();
+	if (failInit) {
+		//Purple led
 		pixel.setPixelColor(0, pixel.Color(255,0,255));
     	pixel.show();
-    	abort();
-	}
-	//Green led
-	pixel.setPixelColor(0, pixel.Color(0,255,0));
-    pixel.show();
-
-    // read the network id of this device
-  	Pozyx.regRead(POZYX_NETWORK_ID, (uint8_t*)&myID, 2);
-  	Serial.println(myID, HEX);
-
-    Serial.println("Setup went OK");
+		while(1);
+	} else {
+		//Green led
+		pixel.setPixelColor(0, pixel.Color(0,255,0));
+    	pixel.show();
+    	Serial.println("Setup went OK");
+    }
 }
 
 void loop() {
@@ -45,10 +84,10 @@ void loop() {
 
 //Rainbox effect for NeoPixel
 void rainbow(uint8_t wait) {
-  uint16_t i, j;
+  uint16_t j;
 
   for(j=0; j<256; j++) {
-    pixel.setPixelColor(0, Wheel((i+j) & 255));
+    pixel.setPixelColor(0, Wheel((j) & 255));
     pixel.show();
     delay(wait);
   }

@@ -20,11 +20,18 @@ Once the anchors have been positioned burn the .ino to a compatible board that h
 ## Max range 
 The aim of this experiment is to test the maximum distance at which two given tags can communicate through UltraWideBand.
 
-For this experiment the base boards are two SAMD21 based [Adafruit METRO M0 Express.](https://www.adafruit.com/product/3505). [Adafruit NeoPixel library](git@github.com:adafruit/Adafruit_NeoPixel.git) was also used
+For this experiment the base boards are two SAMD21 based [Adafruit METRO M0 Express.](https://www.adafruit.com/product/3505)
+
+Libraries:
+
+* Adafruit NeoPixel library: ``` git clone git@github.com:adafruit/Adafruit_NeoPixel.git ```
+* Adafruit_SPIFlash: ``` git clone git@github.com:adafruit/Adafruit_SPIFlash.git ```
 
 ---
 
 ## More info:
-* Platformio docs on ATMELSAM: http://docs.platformio.org/en/latest/platforms/atmelsam.html
+* Platformio docs on ATMELSAM - Add udev rules: http://docs.platformio.org/en/latest/platforms/atmelsam.html
+* Adafruit udev rules: https://learn.adafruit.com/adafruit-arduino-ide-setup/linux-setup#udev-rules
+* Using SPI 2MB memory https://learn.adafruit.com/adafruit-metro-m0-express-designed-for-circuitpython/using-spi-flash
 
 Enjoy.
