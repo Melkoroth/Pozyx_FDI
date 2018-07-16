@@ -1,7 +1,8 @@
 # Pozyx_FDI
-Pozyx usage tests tailored for usage in 411's office of the Facultad de Informática of Universidad Complutense de Madrid. 
+[Pozyx](https://www.pozyx.io/) usage tests tailored for usage in office number 411 of the [Facultad de Informática](http://informatica.ucm.es/) of Universidad Complutense de Madrid. 
 
-Initial configuration was made using Pozyx's cloud platform with auto calibrate function. We obtained the next map and ranges using max transmission power:
+Initial configuration was made using Pozyx's cloud platform with auto calibrate function. For this we measured the Z position of all 4 anchors. The map was made using [Floorplanner.](https://www.floorplanner.com)
+
 ![Online map](images/cloudMap.png)
 
 ### Things you'll need:
@@ -23,15 +24,28 @@ The aim of this experiment is to test the maximum distance at which two given ta
 For this experiment the base boards are two SAMD21 based [Adafruit METRO M0 Express.](https://www.adafruit.com/product/3505)
 
 Libraries:
-
+If you're using platformio install into ~/.platformio/lib
 * Adafruit NeoPixel library: ``` git clone git@github.com:adafruit/Adafruit_NeoPixel.git ```
 * Adafruit_SPIFlash: ``` git clone git@github.com:adafruit/Adafruit_SPIFlash.git ```
 
 ---
 
 ## More info:
-* Platformio docs on ATMELSAM - Add udev rules: http://docs.platformio.org/en/latest/platforms/atmelsam.html
-* Adafruit udev rules: https://learn.adafruit.com/adafruit-arduino-ide-setup/linux-setup#udev-rules
-* Using SPI 2MB memory https://learn.adafruit.com/adafruit-metro-m0-express-designed-for-circuitpython/using-spi-flash
+* If you have problems while detecting boards you need to add udev rules:
+
+https://learn.adafruit.com/adafruit-arduino-ide-setup/linux-setup#udev-rules
+``` 
+$ wget https://raw.githubusercontent.com/adafruit/Trinket_Arduino_Linux/master/99-adafruit-boards.rules
+$ sudo cp 99-adafruit-boards.rules /etc/udev/rules.d/   
+```
+http://docs.platformio.org/en/latest/faq.html#faq-udev-rules
+```
+$ curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core/develop/scripts/99-platformio-udev.rules | sudo tee /etc/udev/rules.d/99-platformio-udev.rules
+```
+
+* [Platformio docs on ATMELSAM](http://docs.platformio.org/en/latest/platforms/atmelsam.html)
+* [Using SPI 2MB memory](https://learn.adafruit.com/adafruit-metro-m0-express-designed-for-circuitpython/using-spi-flash)
+
+---
 
 Enjoy.
