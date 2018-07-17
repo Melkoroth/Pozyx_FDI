@@ -22,17 +22,21 @@ Adafruit_W25Q16BV_FatFs fatfs(flash);
 const uint8_t neoPixelPin = 40;
 Adafruit_NeoPixel pixel = Adafruit_NeoPixel(1, neoPixelPin, NEO_GRB + NEO_KHZ800);
 
-//Pozyx ID
+//Pozyx ID's
 uint16_t myID = 0; 
+uint16_t destinationID = 0;
+
+String inputString = "";
+boolean stringComplete = false;
 
 void setup() {
 	boolean failInit = false;
 
 	Serial.begin(115200);
 	//Waits for usb connection before continuing
-	//while (!Serial);
+	while (!Serial);
 	Serial.println();
-	Serial.println(".::[ Pozyx max range experiment - Juan L. Pérez Díez ]::.");
+	Serial.println(F(".::[ Pozyx max range experiment - Juan L. Pérez Díez ]::."));
 
 	// Initialize flash library and check its chip ID.
 	if (!flash.begin(FLASH_TYPE)) {
@@ -48,21 +52,16 @@ void setup() {
 		Serial.println(F("ERROR: failed to mount newly formatted filesystem!"));
 		Serial.println(F("Was the flash chip formatted with the fatfs_format example?"));
 		failInit = true;
-	} else
-	Serial.println(F("Mounted filesystem!"));
-
-	//Init pozyx
-	if(Pozyx.begin() == POZYX_FAILURE) {
-		Serial.println(F("ERROR: Unable to connect to pozyx shield"));
-    	failInit = true;
 	} else {
-		// read the network id of this device
-  		Pozyx.regRead(POZYX_NETWORK_ID, (uint8_t*)&myID, 2);
-  		Serial.print("Pozyx ID: ");
-  		Serial.println(myID, HEX);
-  	}
+	  Serial.println(F("Mounted filesystem!"));
+  }
 
-  	pixel.begin();
+  initPozyx(failInit);
+
+  //Init LED
+  pixel.begin();
+  inputString.reserve(100);
+
 	if (failInit) {
 		//Purple led
 		pixel.setPixelColor(0, pixel.Color(255,0,255));
@@ -74,6 +73,83 @@ void setup() {
     	pixel.show();
     	Serial.println("Setup went OK");
     }
+}
+
+void initPozyx(bool failInit) {
+  //Init pozyx
+  if(Pozyx.begin() == POZYX_FAILURE) {
+    Serial.println(F("ERROR: Unable to connect to pozyx shield"));
+    failInit = true;
+  } else {
+    Pozyx.setTxPower(33.0);
+    //Read the network id of this device
+    Pozyx.regRead(POZYX_NETWORK_ID, (uint8_t*)&myID, 2);
+    Serial.print("Pozyx ID: ");
+    Serial.print(myID, HEX);
+    //Read and print configuration
+    UWB_settings_t settings;
+    if (Pozyx.getUWBSettings(&settings) == POZYX_SUCCESS) {
+      //Channel
+      Serial.print(" | channel: ");
+      Serial.print(settings.channel);
+      //Gain
+      Serial.print(" | ");
+      Serial.print(settings.gain_db);
+      Serial.print("dB");
+      //Bitrate
+      Serial.print(" | ");
+      switch(settings.bitrate) {
+        case 0: 
+          Serial.print("110kbits/s");
+          break;
+        case 1:
+          Serial.print("850kbits/s");
+          break;
+        case 2:
+          Serial.print("6.8Mbits/s");
+          break;
+      }
+      //Pulse repetition frequency
+      Serial.print(" | ");
+      switch (settings.prf) {
+          case 1:
+            Serial.print("16MHz");
+            break;
+          case 2:
+            Serial.print("64MHz");
+            break;
+      }
+      //Preamble length
+      Serial.print(" | ");
+      switch (settings.plen) {
+          case 0x0C:
+            Serial.print("4096 symbols.");
+            break;
+          case 0x28:
+            Serial.print("1024 symbols");
+            break;
+          case 0x18: 
+            Serial.print("1536 symbols.");
+            break;
+          case 0x08: 
+            Serial.print("1024 symbols.");
+            break;
+          case 0x34: 
+            Serial.print("512 symbols.");
+            break;
+          case 0x24: 
+            Serial.print("256 symbols.");
+            break;
+          case 0x14: 
+            Serial.print("128 symbols.");
+            break;
+          case 0x04: 
+            Serial.print("64 symbols.");
+            break;
+      }
+      Serial.println();
+    }
+  }
 }
 
 void loop() {
