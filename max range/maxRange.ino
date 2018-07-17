@@ -56,10 +56,11 @@ void setup() {
 	  Serial.println(F("Mounted filesystem!"));
   }
 
-  initPozyx(failInit);
+  initPozyx(&failInit);
 
   //Init LED
   pixel.begin();
+  //Reserve memory for input string
   inputString.reserve(100);
 
 	if (failInit) {
@@ -75,6 +76,7 @@ void setup() {
     }
 }
 
+//Init pozyx and display it's settings
 void initPozyx(bool failInit) {
   //Init pozyx
   if(Pozyx.begin() == POZYX_FAILURE) {
