@@ -155,10 +155,31 @@ void initPozyx(bool failInit) {
 }
 
 void loop() {
-	rainbow(10);
-	Serial.print("Free RAM: ");
-	Serial.print(freeRam());
-	Serial.println(" Bytes");
+  // we wait up to 300ms to see if we have received an incoming message (if so we receive an RX_DATA interrupt)
+  if(Pozyx.waitForFlag(POZYX_INT_STATUS_RX_DATA,300)) {
+    // we have received a message!
+
+    uint8_t length = 0;
+    uint16_t messenger = 0x00;
+    delay(1);
+    // Let's read out some information about the message (i.e., how many bytes did we receive and who sent the message)
+    Pozyx.getLastDataLength(&length);
+    Pozyx.getLastNetworkId(&messenger);
+
+    char data[length];
+
+    // read the contents of the receive (RX) buffer, this is the message that was sent to this device
+    Pozyx.readRXBufferData((uint8_t *) data, length);
+    Serial.print("Ox");
+    Serial.print(messenger, HEX);
+    Serial.print(": ");
+    Serial.println(data);
+  }
+
+	//rainbow(10);
+	//Serial.print("Free RAM: ");
+	//Serial.print(freeRam());
+	//Serial.println(" Bytes");
 }
 
 
