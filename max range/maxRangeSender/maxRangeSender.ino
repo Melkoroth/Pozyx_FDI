@@ -13,12 +13,6 @@ Adafruit_NeoPixel pixel = Adafruit_NeoPixel(1, neoPixelPin, NEO_GRB + NEO_KHZ800
 
 //Pozyx ID's
 uint16_t myID = 0; 
-//0x0 broadcasts to all devices
-const uint16_t remoteID = 0x00;
-//Data to send
-const String TXSTRING = "ping";
-const uint8_t TXBUFFERSIZE = TXSTRING.length() + 1;
-
 
 void setup() {
 	Serial.begin(115200);
@@ -28,6 +22,7 @@ void setup() {
 
   //Init LED
   pixel.begin();
+  pixel.setBrightness(10);
 
   //Init pozyx
   if(Pozyx.begin() == POZYX_FAILURE) {
@@ -46,25 +41,30 @@ void setup() {
 }
 
 void loop() {
-  //Turn off LED
-  pixel.setBrightness(0);
-  pixel.show();
-  pixel.setBrightness(150);
-  delay(125);
+}
 
-  //Create send buffer
-  uint8_t txBuffer[TXBUFFERSIZE];
-  //Fill with data
-  TXSTRING.getBytes(txBuffer, TXBUFFERSIZE);
-  //Write to Pozyx buffer & send data
-  if ((Pozyx.writeTXBufferData(txBuffer, TXBUFFERSIZE)  == POZYX_SUCCESS) && 
-      Pozyx.sendTXBufferData(remoteID) == POZYX_SUCCESS) {
-    pixel.setPixelColor(0, pixel.Color(0, 255, 0));
+//Rainbox effect for NeoPixel
+void rainbow(uint8_t wait) {
+  uint16_t j;
 
-  } else {
-    pixel.setPixelColor(0, pixel.Color(255, 150, 0));
+  for(j=0; j<256; j++) {
+    pixel.setPixelColor(0, Wheel((j) & 255));
+    pixel.show();
+    delay(wait);
   }
-  
-  pixel.show();
-  delay(125);
+}
+
+// Input a value 0 to 255 to get a color value.
+// The colours are a transition r - g - b - back to r.
+uint32_t Wheel(byte WheelPos) {
+  WheelPos = 255 - WheelPos;
+  if(WheelPos < 85) {
+    return pixel.Color(255 - WheelPos * 3, 0, WheelPos * 3);
+  }
+  if(WheelPos < 170) {
+    WheelPos -= 85;
+    return pixel.Color(0, WheelPos * 3, 255 - WheelPos * 3);
+  }
+  WheelPos -= 170;
+  return pixel.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
 }

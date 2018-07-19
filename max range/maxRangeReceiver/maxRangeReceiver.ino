@@ -2,6 +2,7 @@
 Pozyx tests for max range
 Juan L. Pérez Díez
 */
+
 #include <Pozyx.h>
 #include <Pozyx_definitions.h>
 #include <Wire.h>
@@ -11,7 +12,7 @@ Juan L. Pérez Díez
 #include <Adafruit_NeoPixel.h>
 
 //SPI Flash 2MB memory
-#define FLASH_TYPE	SPIFLASHTYPE_W25Q16BV
+#define FLASH_TYPE	   SPIFLASHTYPE_W25Q16BV
 #define FLASH_SS       SS1                    // Flash chip SS pin.
 #define FLASH_SPI_PORT SPI1                   // What SPI port is Flash on?
 Adafruit_SPIFlash flash(FLASH_SS, &FLASH_SPI_PORT);     // Use hardware SPI
@@ -23,10 +24,13 @@ Adafruit_NeoPixel pixel = Adafruit_NeoPixel(1, neoPixelPin, NEO_GRB + NEO_KHZ800
 
 //Pozyx ID's
 uint16_t myID = 0; 
-const uint16_t remoteID = 0x6717;
+//const uint16_t remoteID = 0x6717;
+const uint16_t remoteID = 0x677D;
 
-String inputString = "";
-boolean stringComplete = false;
+//Structure that holds distance info
+device_range_t rangeInfo;
+uint32_t maxDistance = 0;
+uint32_t maxDistanceRemote = 0;
 
 void setup() {
 	boolean failInit = false;
@@ -59,8 +63,7 @@ void setup() {
 
   //Init LED
   pixel.begin();
-  //Reserve memory for input string
-  inputString.reserve(100);
+  pixel.setBrightness(10);
 
 	if (failInit) {
 		//Purple led
@@ -156,54 +159,68 @@ void initPozyx(bool failInit) {
 void loop() {
   //readUWBdata();
   calcRange();
+  //Serial.print("-> ");
+  delay(100);
+  calcRemoteRange();
 	//rainbow(10);
 	//Serial.print("Free RAM: ");
 	//Serial.print(freeRam());
 	//Serial.println(" Bytes");
-  delay(500);
-}
-
-//Reads incoming UWB data - 300ms timeout
-void readUWBdata() {
-  // we wait up to 300ms to see if we have received an incoming message (if so we receive an RX_DATA interrupt)
-  if(Pozyx.waitForFlag(POZYX_INT_STATUS_RX_DATA, 500)) {
-    // we have received a message!
-    uint8_t length = 0;
-    uint16_t messenger = 0x00;
-    delay(1);
-    // Let's read out some information about the message (i.e., how many bytes did we receive and who sent the message)
-    Pozyx.getLastDataLength(&length);
-    Pozyx.getLastNetworkId(&messenger);
-
-    char data[length];
-
-    // read the contents of the receive (RX) buffer, this is the message that was sent to this device
-    Pozyx.readRXBufferData((uint8_t *) data, length);
-    Serial.print("Ox");
-    Serial.print(messenger, HEX);
-    //Serial.print(" - ");
-    //Serial.print(length);
-    //Serial.print("B:");
-    Serial.print(": ");
-    Serial.println(data);
-  } else {
-    Serial.println("Timeout waiting for data");
-  }
+  delay(100);
 }
 
 //Needs remoteID
 void calcRange() {
-  device_range_t rangeInfo;
-  if (Pozyx.doRanging(remoteID, &rangeInfo) == POZYX_SUCCESS) {
-    Serial.print(rangeInfo.timestamp);
-    Serial.print("ms | ");
-    Serial.print(rangeInfo.distance);
-    Serial.print("mm | ");
-    Serial.print(rangeInfo.RSS);
-    Serial.println("dBm");
+  int result = Pozyx.doRanging(remoteID, &rangeInfo);
+  if (result == POZYX_SUCCESS) {
+    testMax(false);
+    printRangeInfo();
+  } else if (result == POZYX_TIMEOUT) {
+    Serial.println("Timeout");
   } else {
-    Serial.println("Ranging failed");
+    //Serial.println("Fail");
   }
+}
+
+//Uses remoteID & self ID
+void calcRemoteRange() {
+  int result = Pozyx.doRemoteRanging(remoteID, myID, &rangeInfo);
+  if (result == POZYX_SUCCESS) {
+    testMax(true);
+    Serial.print("R: ");
+    printRangeInfo();
+  } else if (result == POZYX_TIMEOUT) {
+    Serial.println("Timeout");   
+  } else {
+    //Serial.println("Fail");
+  }
+}
+
+void printRangeInfo() {
+  Serial.print(rangeInfo.timestamp);
+  Serial.print("ms | ");
+  Serial.print(rangeInfo.distance);
+  Serial.print("mm | ");
+  Serial.print(rangeInfo.RSS);
+  Serial.println("dBm");
+}
+
+//Tests max and stores
+void testMax(bool remote) {
+  if (!remote) {
+    if (rangeInfo.distance > maxDistance) {
+      maxDistance = rangeInfo.distance;
+      Serial.print("New max: ");
+      Serial.println(maxDistance);
+    }
+  } else {
+    if (rangeInfo.distance > maxDistanceRemote) {
+      maxDistanceRemote = rangeInfo.distance;
+      Serial.print("New remote max: ");
+      Serial.println(maxDistanceRemote);
+    }
+  }
+
 }
 
 //Rainbox effect for NeoPixel
