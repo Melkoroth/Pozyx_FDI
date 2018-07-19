@@ -23,7 +23,7 @@ Adafruit_NeoPixel pixel = Adafruit_NeoPixel(1, neoPixelPin, NEO_GRB + NEO_KHZ800
 
 //Pozyx ID's
 uint16_t myID = 0; 
-uint16_t destinationID = 0;
+const uint16_t remoteID = 0x6717;
 
 String inputString = "";
 boolean stringComplete = false;
@@ -154,17 +154,19 @@ void initPozyx(bool failInit) {
 }
 
 void loop() {
-  readUWBdata();
+  //readUWBdata();
+  calcRange();
 	//rainbow(10);
 	//Serial.print("Free RAM: ");
 	//Serial.print(freeRam());
 	//Serial.println(" Bytes");
+  delay(500);
 }
 
 //Reads incoming UWB data - 300ms timeout
 void readUWBdata() {
   // we wait up to 300ms to see if we have received an incoming message (if so we receive an RX_DATA interrupt)
-  if(Pozyx.waitForFlag(POZYX_INT_STATUS_RX_DATA, 300)) {
+  if(Pozyx.waitForFlag(POZYX_INT_STATUS_RX_DATA, 500)) {
     // we have received a message!
     uint8_t length = 0;
     uint16_t messenger = 0x00;
@@ -186,6 +188,21 @@ void readUWBdata() {
     Serial.println(data);
   } else {
     Serial.println("Timeout waiting for data");
+  }
+}
+
+//Needs remoteID
+void calcRange() {
+  device_range_t rangeInfo;
+  if (Pozyx.doRanging(remoteID, &rangeInfo) == POZYX_SUCCESS) {
+    Serial.print(rangeInfo.timestamp);
+    Serial.print("ms | ");
+    Serial.print(rangeInfo.distance);
+    Serial.print("mm | ");
+    Serial.print(rangeInfo.RSS);
+    Serial.println("dBm");
+  } else {
+    Serial.println("Ranging failed");
   }
 }
 

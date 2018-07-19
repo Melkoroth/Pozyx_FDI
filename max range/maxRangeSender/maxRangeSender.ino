@@ -14,7 +14,7 @@ Adafruit_NeoPixel pixel = Adafruit_NeoPixel(1, neoPixelPin, NEO_GRB + NEO_KHZ800
 //Pozyx ID's
 uint16_t myID = 0; 
 //0x0 broadcasts to all devices
-const uint16_t DESTINATIONID = 0x00;
+const uint16_t remoteID = 0x00;
 //Data to send
 const String TXSTRING = "ping";
 const uint8_t TXBUFFERSIZE = TXSTRING.length() + 1;
@@ -58,7 +58,7 @@ void loop() {
   TXSTRING.getBytes(txBuffer, TXBUFFERSIZE);
   //Write to Pozyx buffer & send data
   if ((Pozyx.writeTXBufferData(txBuffer, TXBUFFERSIZE)  == POZYX_SUCCESS) && 
-      Pozyx.sendTXBufferData(DESTINATIONID) == POZYX_SUCCESS) {
+      Pozyx.sendTXBufferData(remoteID) == POZYX_SUCCESS) {
     pixel.setPixelColor(0, pixel.Color(0, 255, 0));
 
   } else {
