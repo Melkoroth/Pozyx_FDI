@@ -40,25 +40,8 @@ void setup() {
 	while (!Serial);
 	Serial.println();
 	Serial.println(F(".::[ Pozyx max range experiment - Juan L. Pérez Díez ]::."));
-
-	// Initialize flash library and check its chip ID.
-	if (!flash.begin(FLASH_TYPE)) {
-		Serial.println(F("ERROR:, failed to initialize flash chip!"));
-		failInit = true;
-	} else {
-		Serial.print(F("Flash chip JEDEC ID: 0x")); 
-		Serial.println(flash.GetJEDECID(), HEX);
-	}
-
-	//Init filesystem
-	if (!fatfs.begin()) {
-		Serial.println(F("ERROR: failed to mount newly formatted filesystem!"));
-		Serial.println(F("Was the flash chip formatted with the fatfs_format example?"));
-		failInit = true;
-	} else {
-	  Serial.println(F("Mounted filesystem!"));
-  }
-
+  
+  initFS(&failInit);
   initPozyx(&failInit);
 
   //Init LED
@@ -76,6 +59,30 @@ void setup() {
     	pixel.show();
     	Serial.println("Setup went OK");
     }
+}
+
+void initFS(bool failInit) {
+  // Initialize flash library and check its chip ID.
+  if (!flash.begin(FLASH_TYPE)) {
+    Serial.println(F("ERROR:, failed to initialize flash chip!"));
+    failInit = true;
+  } else {
+    Serial.print(F("Flash chip JEDEC ID: 0x")); 
+    Serial.println(flash.GetJEDECID(), HEX);
+  }
+
+  //Init filesystem
+  if (!fatfs.begin()) {
+    Serial.println(F("ERROR: failed to mount newly formatted filesystem!"));
+    Serial.println(F("Was the flash chip formatted with the fatfs_format example?"));
+    failInit = true;
+  } else {
+    Serial.println(F("Mounted filesystem!"));
+  }
+
+  //if (!fatfs.exists("/maxDistance")) {
+
+  //}
 }
 
 //Init pozyx and display it's settings
