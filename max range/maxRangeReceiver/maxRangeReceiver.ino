@@ -271,9 +271,8 @@ void printSerialRangeInfo() {
 //Writes contents of vars to FS if flag is true
 void writeFileRangeInfo() {
   if (fileNeedsUpdate) {
-    //Seems only to append even when FA_WRITE used so we del entirely
-    fatfs.remove(fileName);
-    File writeFile = fatfs.open(fileName, FILE_WRITE);
+    //Open to write from the beginning
+    File writeFile = fatfs.open(fileName, FA_WRITE);
     if (writeFile) {
       writeFile.print(F("maxDistance: "));
       writeFile.println(maxDistance);
