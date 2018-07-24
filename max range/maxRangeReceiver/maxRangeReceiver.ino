@@ -32,6 +32,11 @@ device_range_t rangeInfo;
 uint32_t maxDistance = 0;
 uint32_t maxDistanceRemote = 0;
 
+//File where maxRanges are stored
+const String fileName = "maxRange.txt";
+//Flag to signal that txt file needs updating
+bool fileNeedsUpdate = false;
+
 void setup() {
 	boolean failInit = false;
 
@@ -59,30 +64,6 @@ void setup() {
     	pixel.show();
     	Serial.println("Setup went OK");
     }
-}
-
-void initFS(bool failInit) {
-  // Initialize flash library and check its chip ID.
-  if (!flash.begin(FLASH_TYPE)) {
-    Serial.println(F("ERROR:, failed to initialize flash chip!"));
-    failInit = true;
-  } else {
-    Serial.print(F("Flash chip JEDEC ID: 0x")); 
-    Serial.println(flash.GetJEDECID(), HEX);
-  }
-
-  //Init filesystem
-  if (!fatfs.begin()) {
-    Serial.println(F("ERROR: failed to mount newly formatted filesystem!"));
-    Serial.println(F("Was the flash chip formatted with the fatfs_format example?"));
-    failInit = true;
-  } else {
-    Serial.println(F("Mounted filesystem!"));
-  }
-
-  //if (!fatfs.exists("/maxDistance")) {
-
-  //}
 }
 
 //Init pozyx and display it's settings
@@ -163,6 +144,78 @@ void initPozyx(bool failInit) {
   }
 }
 
+//Inits file system and reads maxRange variables from fileName
+void initFS(bool failInit) {
+  // Initialize flash library and check its chip ID.
+  if (!flash.begin(FLASH_TYPE)) {
+    Serial.println(F("ERROR:, failed to initialize flash chip!"));
+    failInit = true;
+  } else {
+    Serial.print(F("Flash chip JEDEC ID: 0x")); 
+    Serial.println(flash.GetJEDECID(), HEX);
+  }
+
+  //Init filesystem
+  if (!fatfs.begin()) {
+    Serial.println(F("ERROR: failed to mount newly formatted filesystem!"));
+    Serial.println(F("Was the flash chip formatted with the fatfs_format example?"));
+    failInit = true;
+  } else {
+    Serial.println(F("Mounted filesystem."));
+  }
+
+  //Read variables from file
+  readFileMaxRange();
+
+}
+
+//Opens fileName and reads maxDistance variables
+//Recreates file if not found
+void readFileMaxRange() {
+  File readFile = fatfs.open(fileName, FILE_READ);
+  if (readFile) {
+    //Discard "maxDistance: "
+    readFile.readStringUntil(' ');
+    String line = readFile.readStringUntil('\n');
+    maxDistance = line.toInt();
+
+    //Discard "remoteMaxDistance: "
+    readFile.readStringUntil(' ');
+    line = readFile.readStringUntil('\n');
+    maxDistanceRemote = line.toInt();
+
+    readFile.close();
+    Serial.println("File read successfully. Contents:");
+    printEntireFile();
+    Serial.println("Data in memory:");
+    Serial.println(maxDistance);
+    Serial.println(maxDistanceRemote);
+
+  //File not found
+  } else {
+    File createFile = fatfs.open(fileName, FILE_WRITE);
+    createFile.println(F("maxDistance: 0"));
+    createFile.println(F("remoteMaxDistance: 0"));
+    createFile.close();
+    Serial.println(F("WARNING: Couldn't locate file, recreated."));
+    readFileMaxRange();
+  }
+}
+
+//Prints contents of fileName to Serial port
+void printEntireFile() {
+  File readFile = fatfs.open(fileName, FILE_READ);
+  if (readFile) {
+    while (readFile.available()) {
+      char c = readFile.read();
+      Serial.print(c);
+    }
+    readFile.close();
+  } else {
+    Serial.println(F("ERROR: Can't find file to print."));
+  }
+}
+
 void loop() {
   //readUWBdata();
   calcRange();
@@ -174,6 +227,8 @@ void loop() {
 	//Serial.print(freeRam());
 	//Serial.println(" Bytes");
   delay(100);
+  //Writes new records to FS
+  writeFileRangeInfo();
 }
 
 //Needs remoteID
@@ -181,7 +236,7 @@ void calcRange() {
   int result = Pozyx.doRanging(remoteID, &rangeInfo);
   if (result == POZYX_SUCCESS) {
     testMax(false);
-    printRangeInfo();
+    printSerialRangeInfo();
   } else if (result == POZYX_TIMEOUT) {
     Serial.println("Timeout");
   } else {
@@ -195,7 +250,7 @@ void calcRemoteRange() {
   if (result == POZYX_SUCCESS) {
     testMax(true);
     Serial.print("R: ");
-    printRangeInfo();
+    printSerialRangeInfo();
   } else if (result == POZYX_TIMEOUT) {
     Serial.println("Timeout");   
   } else {
@@ -203,7 +258,8 @@ void calcRemoteRange() {
   }
 }
 
-void printRangeInfo() {
+//Prints contents of vars to Serial
+void printSerialRangeInfo() {
   Serial.print(rangeInfo.timestamp);
   Serial.print("ms | ");
   Serial.print(rangeInfo.distance);
@@ -212,17 +268,38 @@ void printRangeInfo() {
   Serial.println("dBm");
 }
 
-//Tests max and stores
+//Writes contents of vars to FS if flag is true
+void writeFileRangeInfo() {
+  if (fileNeedsUpdate) {
+    //Seems only to append even when FA_WRITE used so we del entirely
+    fatfs.remove(fileName);
+    File writeFile = fatfs.open(fileName, FILE_WRITE);
+    if (writeFile) {
+      writeFile.print(F("maxDistance: "));
+      writeFile.println(maxDistance);
+      writeFile.print(F("remoteMaxDistance: "));
+      writeFile.println(maxDistanceRemote);
+      writeFile.close();
+    } else {
+      Serial.println(F("ERROR attempting to write range info into FS"));
+    }
+    fileNeedsUpdate = false;
+  }
+}
+
+//Tests max and stores in memory & file
 void testMax(bool remote) {
   if (!remote) {
     if (rangeInfo.distance > maxDistance) {
       maxDistance = rangeInfo.distance;
+      fileNeedsUpdate = true;
       Serial.print("New max: ");
       Serial.println(maxDistance);
     }
   } else {
     if (rangeInfo.distance > maxDistanceRemote) {
       maxDistanceRemote = rangeInfo.distance;
+      fileNeedsUpdate = true;
       Serial.print("New remote max: ");
       Serial.println(maxDistanceRemote);
     }
