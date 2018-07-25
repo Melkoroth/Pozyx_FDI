@@ -36,9 +36,7 @@ uint32_t maxDistanceRemote = 0;
 const String fileName = "maxRange.txt";
 //Flag to signal that txt file needs updating
 bool fileNeedsUpdate = false;
-//Serial input data & flag
-String inputString = "";
-boolean stringComplete = false;
+//Flag that controls reporting of sensor to serial
 boolean realtimeReport = false;
 
 /******************
@@ -48,7 +46,6 @@ void setup() {
   boolean failInit = false;
 
   Serial.begin(115200);
-  inputString.reserve(10);
   //Waits for usb connection before continuing
   while (!Serial);
   Serial.println();
@@ -228,7 +225,7 @@ void calcRange() {
   int result = Pozyx.doRanging(remoteID, &rangeInfo);
   if (result == POZYX_SUCCESS) {
     testMax(false);
-    printSerialRangeInfo();
+    printSerialRangeInfo(false);
   } else if (result == POZYX_TIMEOUT) {
     Serial.println("Timeout");
   } else {
@@ -271,11 +268,6 @@ void testMax(bool remote) {
 /******************
 -> SERIAL & FILES
 ******************/
-//Prints contents of vars to Serial if flag is on
-void printSerialRangeInfo() {
-  printSerialRangeInfo(false);
-}
-
 //Prints data from pozyx range
 void printSerialRangeInfo(bool remote) {
   if (realtimeReport) {
@@ -289,46 +281,29 @@ void printSerialRangeInfo(bool remote) {
   }
 }
 
-//Executes in between loops.
 //Reads incoming chars until NL or CR & activates flag
-void serialEvent() {
-  while (Serial.available() > 0) {
-    Serial.println("*^* - ");
-    char inChar = (char)Serial.peek();
-    //Add char to string
-    if ((inChar != '\r') || (inChar != '\n')) {
-      inputString += inChar;
-      Serial.print(inChar);
-    //New line or carriage return
-    } else {
-      //Empty buffer
-      while(Serial.available() > 0) {
-        Serial.read();
-      }
-      Serial.println();
-      stringComplete = true;
-    }
-  }
-}
-
-//Receives serial input and calls appropriate method
 void serviceSerialEvents() {
-  if (stringComplete) {
+  if (Serial.available() > 0) {
+    char inChar = (char)Serial.read();
     //Show help
-    if (inputString.equalsIgnoreCase("h")) {
+    if (inChar == 'h') {
       printSerialHelp();
     //Toggle real-time serial reports
-    } else if (inputString.equalsIgnoreCase("r")) {
-      realtimeReport != realtimeReport;
+    } else if (inChar == 'r') {
+      realtimeReport = !realtimeReport;
     //Show maxes
-    } else if (inputString.equalsIgnoreCase("m")) {
+    } else if (inChar == 'm') {
       printVarsInMem();
     //Delete maxes
-    } else if (inputString.equalsIgnoreCase("d")) {
+    } else if (inChar == 'd') {
       deleteMaxValues();
     //Print internal file
-    } else if (inputString.equalsIgnoreCase("p")) {
+    } else if (inChar == 'p') {
       printEntireFile();
+    }
+    //Empty buffer
+    while (Serial.available() > 0) {
+      Serial.read();
     }
   }
 }
@@ -355,6 +330,8 @@ void printVarsInMem() {
 void deleteMaxValues() {
   maxDistance = 0;
   maxDistanceRemote = 0;
+  fatfs.remove(fileName);
+  fatfs.open(fileName, FILE_WRITE);
   fileNeedsUpdate = true;
   writeFileRangeInfo();
 }
