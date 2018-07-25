@@ -12,7 +12,7 @@ Juan L. Pérez Díez
 #include <Adafruit_NeoPixel.h>
 
 //SPI Flash 2MB memory
-#define FLASH_TYPE	   SPIFLASHTYPE_W25Q16BV
+#define FLASH_TYPE     SPIFLASHTYPE_W25Q16BV
 #define FLASH_SS       SS1                    // Flash chip SS pin.
 #define FLASH_SPI_PORT SPI1                   // What SPI port is Flash on?
 Adafruit_SPIFlash flash(FLASH_SS, &FLASH_SPI_PORT);     // Use hardware SPI
@@ -36,15 +36,23 @@ uint32_t maxDistanceRemote = 0;
 const String fileName = "maxRange.txt";
 //Flag to signal that txt file needs updating
 bool fileNeedsUpdate = false;
+//Serial input data & flag
+String inputString = "";
+boolean stringComplete = false;
+boolean realtimeReport = false;
 
+/******************
+-> SETUP
+******************/
 void setup() {
-	boolean failInit = false;
+  boolean failInit = false;
 
-	Serial.begin(115200);
-	//Waits for usb connection before continuing
-	while (!Serial);
-	Serial.println();
-	Serial.println(F(".::[ Pozyx max range experiment - Juan L. Pérez Díez ]::."));
+  Serial.begin(115200);
+  inputString.reserve(10);
+  //Waits for usb connection before continuing
+  while (!Serial);
+  Serial.println();
+  Serial.println(F(".::[ Pozyx max range experiment - Juan L. Pérez Díez ]::."));
   
   initFS(&failInit);
   initPozyx(&failInit);
@@ -53,16 +61,16 @@ void setup() {
   pixel.begin();
   pixel.setBrightness(10);
 
-	if (failInit) {
-		//Purple led
-		pixel.setPixelColor(0, pixel.Color(255,0,255));
-    	pixel.show();
-		while(1);
-	} else {
-		//Green led
-		pixel.setPixelColor(0, pixel.Color(0,255,0));
-    	pixel.show();
-    	Serial.println("Setup went OK");
+  if (failInit) {
+    //Purple led
+    pixel.setPixelColor(0, pixel.Color(255,0,255));
+      pixel.show();
+    while(1);
+  } else {
+    //Green led
+    pixel.setPixelColor(0, pixel.Color(0,255,0));
+      pixel.show();
+      Serial.println("Setup went OK");
     }
 }
 
@@ -163,10 +171,8 @@ void initFS(bool failInit) {
   } else {
     Serial.println(F("Mounted filesystem."));
   }
-
   //Read variables from file
   readFileMaxRange();
-
 }
 
 //Opens fileName and reads maxDistance variables
@@ -185,11 +191,10 @@ void readFileMaxRange() {
     maxDistanceRemote = line.toInt();
 
     readFile.close();
-    Serial.println("File read successfully. Contents:");
-    printEntireFile();
-    Serial.println("Data in memory:");
-    Serial.println(maxDistance);
-    Serial.println(maxDistanceRemote);
+    //Serial.println("File read successfully. Contents:");
+    //printEntireFile();
+    //Serial.println("Data in memory:");
+    printVarsInMem();
 
   //File not found
   } else {
@@ -202,35 +207,22 @@ void readFileMaxRange() {
   }
 }
 
-//Prints contents of fileName to Serial port
-void printEntireFile() {
-  File readFile = fatfs.open(fileName, FILE_READ);
-  if (readFile) {
-    while (readFile.available()) {
-      char c = readFile.read();
-      Serial.print(c);
-    }
-    readFile.close();
-  } else {
-    Serial.println(F("ERROR: Can't find file to print."));
-  }
-}
-
+/******************
+-> LOOP
+******************/
 void loop() {
-  //readUWBdata();
   calcRange();
-  //Serial.print("-> ");
   delay(100);
   calcRemoteRange();
-	//rainbow(10);
-	//Serial.print("Free RAM: ");
-	//Serial.print(freeRam());
-	//Serial.println(" Bytes");
   delay(100);
-  //Writes new records to FS
+  serviceSerialEvents();
+  //delay(10);
   writeFileRangeInfo();
 }
 
+/******************
+-> POZYX FUNCS
+******************/
 //Needs remoteID
 void calcRange() {
   int result = Pozyx.doRanging(remoteID, &rangeInfo);
@@ -249,40 +241,11 @@ void calcRemoteRange() {
   int result = Pozyx.doRemoteRanging(remoteID, myID, &rangeInfo);
   if (result == POZYX_SUCCESS) {
     testMax(true);
-    Serial.print("R: ");
-    printSerialRangeInfo();
+    printSerialRangeInfo(true);
   } else if (result == POZYX_TIMEOUT) {
     Serial.println("Timeout");   
   } else {
     //Serial.println("Fail");
-  }
-}
-
-//Prints contents of vars to Serial
-void printSerialRangeInfo() {
-  Serial.print(rangeInfo.timestamp);
-  Serial.print("ms | ");
-  Serial.print(rangeInfo.distance);
-  Serial.print("mm | ");
-  Serial.print(rangeInfo.RSS);
-  Serial.println("dBm");
-}
-
-//Writes contents of vars to FS if flag is true
-void writeFileRangeInfo() {
-  if (fileNeedsUpdate) {
-    //Open to write from the beginning
-    File writeFile = fatfs.open(fileName, FA_WRITE);
-    if (writeFile) {
-      writeFile.print(F("maxDistance: "));
-      writeFile.println(maxDistance);
-      writeFile.print(F("remoteMaxDistance: "));
-      writeFile.println(maxDistanceRemote);
-      writeFile.close();
-    } else {
-      Serial.println(F("ERROR attempting to write range info into FS"));
-    }
-    fileNeedsUpdate = false;
   }
 }
 
@@ -303,9 +266,134 @@ void testMax(bool remote) {
       Serial.println(maxDistanceRemote);
     }
   }
-
 }
 
+/******************
+-> SERIAL & FILES
+******************/
+//Prints contents of vars to Serial if flag is on
+void printSerialRangeInfo() {
+  printSerialRangeInfo(false);
+}
+
+//Prints data from pozyx range
+void printSerialRangeInfo(bool remote) {
+  if (realtimeReport) {
+    (remote) ? Serial.print("R: ") : 0;
+    Serial.print(rangeInfo.timestamp);
+    Serial.print("ms | ");
+    Serial.print(rangeInfo.distance);
+    Serial.print("mm | ");
+    Serial.print(rangeInfo.RSS);
+    Serial.println("dBm");
+  }
+}
+
+//Executes in between loops.
+//Reads incoming chars until NL or CR & activates flag
+void serialEvent() {
+  while (Serial.available() > 0) {
+    Serial.println("*^* - ");
+    char inChar = (char)Serial.peek();
+    //Add char to string
+    if ((inChar != '\r') || (inChar != '\n')) {
+      inputString += inChar;
+      Serial.print(inChar);
+    //New line or carriage return
+    } else {
+      //Empty buffer
+      while(Serial.available() > 0) {
+        Serial.read();
+      }
+      Serial.println();
+      stringComplete = true;
+    }
+  }
+}
+
+//Receives serial input and calls appropriate method
+void serviceSerialEvents() {
+  if (stringComplete) {
+    //Show help
+    if (inputString.equalsIgnoreCase("h")) {
+      printSerialHelp();
+    //Toggle real-time serial reports
+    } else if (inputString.equalsIgnoreCase("r")) {
+      realtimeReport != realtimeReport;
+    //Show maxes
+    } else if (inputString.equalsIgnoreCase("m")) {
+      printVarsInMem();
+    //Delete maxes
+    } else if (inputString.equalsIgnoreCase("d")) {
+      deleteMaxValues();
+    //Print internal file
+    } else if (inputString.equalsIgnoreCase("p")) {
+      printEntireFile();
+    }
+  }
+}
+
+//Prints command info to serial
+void printSerialHelp() {
+  Serial.println("Available commands are: ");
+  Serial.println("h - show this help");
+  Serial.println("r - toggle real-time reports");
+  Serial.println("m - print max range stored values");
+  Serial.println("d - delete stored maximum variables");
+  Serial.println("p - print contents of internal file");
+}
+
+//Prints the max value variables
+void printVarsInMem() {
+  Serial.print("* maxDistance: ");
+  Serial.println(maxDistance);
+  Serial.print("* maxDistanceRemote: ");
+  Serial.println(maxDistanceRemote);
+}
+
+//Resets max distance variables both in memory & in filesystem
+void deleteMaxValues() {
+  maxDistance = 0;
+  maxDistanceRemote = 0;
+  fileNeedsUpdate = true;
+  writeFileRangeInfo();
+}
+
+//Writes contents of vars to FS if flag is true
+void writeFileRangeInfo() {
+  if (fileNeedsUpdate) {
+    //Open to write from the beginning
+    File writeFile = fatfs.open(fileName, FA_WRITE);
+    if (writeFile) {
+      writeFile.print(F("maxDistance: "));
+      writeFile.println(maxDistance);
+      writeFile.print(F("remoteMaxDistance: "));
+      writeFile.println(maxDistanceRemote);
+      writeFile.close();
+    } else {
+      Serial.println(F("ERROR attempting to write range info into FS"));
+    }
+    fileNeedsUpdate = false;
+  }
+}
+
+//Prints contents of fileName to Serial port
+void printEntireFile() {
+  File readFile = fatfs.open(fileName, FILE_READ);
+  if (readFile) {
+    while (readFile.available()) {
+      char c = readFile.read();
+      Serial.print(c);
+    }
+    readFile.close();
+  } else {
+    Serial.println(F("ERROR: Can't find file to print."));
+  }
+}
+
+/******************
+-> AUX FUNCS
+******************/
 //Rainbox effect for NeoPixel
 void rainbow(uint8_t wait) {
   uint16_t j;
