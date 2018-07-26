@@ -1,0 +1,1094 @@
+.::[ Pozyx max range experiment - Juan L. Pérez Díez ]::.
+.::[ Universidad Complutense de Madrid - Facultad de Informática ]::.
+Flash chip JEDEC ID: 0x1401501
+Mounted filesystem.
+* maxDistance: 3333
+* maxDistanceRemote: 3441
+Pozyx ID: 6726 | channel: 5 | 33.00dB | 110kbits/s | 64MHz | 1024 symbols.
+Setup went OK
+New remote max: 3848
+New max: 3525
+
+[SENT] p
+
+maxDistance: 5848
+remoteMaxDistance: 5768
+
+[SENT] p
+
+maxDistance: 5848
+remoteMaxDistance: 5768
+
+[SENT] r
+
+177827ms | 4560mm | -79dBm
+R: 293986ms | 4592mm | -79dBm
+178068ms | 4560mm | -79dBm
+R: 294226ms | 4630mm | -78dBm
+178309ms | 4691mm | -79dBm
+R: 294466ms | 4555mm | -78dBm
+178549ms | 4653mm | -79dBm
+R: 294706ms | 4592mm | -78dBm
+178805ms | 4616mm | -79dBm
+R: 294961ms | 4630mm | -78dBm
+179060ms | 4635mm | -79dBm
+R: 295215ms | 4583mm | -78dBm
+179301ms | 4597mm | -79dBm
+R: 295455ms | 4658mm | -78dBm
+179542ms | 4635mm | -79dBm
+R: 295695ms | 4620mm | -78dBm
+179797ms | 4653mm | -79dBm
+R: 295950ms | 4517mm | -78dBm
+180039ms | 4653mm | -79dBm
+R: 296191ms | 4555mm | -78dBm
+180281ms | 4616mm | -78dBm
+R: 296431ms | 4517mm | -77dBm
+180521ms | 4092mm | -79dBm
+R: 296671ms | 3628mm | -78dBm
+180776ms | 3436mm | -79dBm
+R: 296925ms | 3488mm | -78dBm
+181031ms | 3633mm | -79dBm
+R: 297180ms | 3507mm | -79dBm
+181273ms | 3745mm | -79dBm
+R: 297420ms | 4022mm | -78dBm
+181514ms | 3783mm | -79dBm
+R: 297660ms | 4705mm | -78dBm
+181754ms | 3858mm | -79dBm
+R: 297900ms | 3684mm | -78dBm
+182009ms | 3595mm | -79dBm
+R: 298154ms | 3722mm | -78dBm
+182250ms | 4513mm | -79dBm
+R: 298394ms | 3909mm | -79dBm
+182491ms | 4691mm | -79dBm
+R: 298634ms | 4780mm | -78dBm
+182732ms | 4363mm | -79dBm
+R: 298874ms | 4125mm | -78dBm
+182987ms | 4261mm | -79dBm
+R: 299129ms | 4340mm | -79dBm
+183229ms | 5394mm | -79dBm
+R: 299369ms | 5164mm | -78dBm
+183469ms | 4616mm | -79dBm
+R: 299609ms | 4574mm | -78dBm
+183710ms | 5019mm | -79dBm
+R: 299849ms | 4874mm | -78dBm
+183965ms | 4972mm | -79dBm
+R: 300104ms | 5464mm | -78dBm
+184207ms | 5450mm | -80dBm
+New remote max: 6082
+R: 300344ms | 6082mm | -78dBm
+184680ms | 5225mm | -79dBm
+New remote max: 6279
+R: 300816ms | 6279mm | -78dBm
+New max: 5890
+185165ms | 5890mm | -79dBm
+R: 301299ms | 5989mm | -78dBm
+New max: 6162
+185639ms | 6162mm | -78dBm
+R: 301771ms | 6016mm | -78dBm
+New max: 6312
+186123ms | 6312mm | -79dBm
+New remote max: 6354
+R: 302254ms | 6354mm | -78dBm
+New max: 6537
+186596ms | 6537mm | -79dBm
+New remote max: 6607
+R: 302725ms | 6607mm | -78dBm
+New max: 6612
+187065ms | 6612mm | -79dBm
+New remote max: 6935
+R: 303193ms | 6935mm | -79dBm
+New max: 7653
+187536ms | 7653mm | -80dBm
+New remote max: 8173
+R: 303662ms | 8173mm | -78dBm
+188005ms | 7352mm | -80dBm
+R: 304130ms | 7432mm | -79dBm
+188247ms | 7446mm | -80dBm
+R: 304370ms | 7620mm | -79dBm
+188487ms | 7559mm | -80dBm
+R: 304610ms | 7545mm | -79dBm
+188728ms | 7596mm | -81dBm
+R: 304850ms | 8023mm | -79dBm
+New max: 7812
+188983ms | 7812mm | -81dBm
+R: 305104ms | 7957mm | -80dBm
+New max: 8825
+189456ms | 8825mm | -81dBm
+New remote max: 8445
+R: 305575ms | 8445mm | -80dBm
+189924ms | 8562mm | -80dBm
+New remote max: 8886
+R: 306042ms | 8886mm | -80dBm
+New max: 9125
+190407ms | 9125mm | -82dBm
+New remote max: 9186
+R: 306523ms | 9186mm | -80dBm
+New max: 9369
+190877ms | 9369mm | -80dBm
+New remote max: 9402
+R: 306992ms | 9402mm | -79dBm
+New max: 9669
+191351ms | 9669mm | -81dBm
+New remote max: 9739
+R: 307464ms | 9739mm | -82dBm
+New max: 9969
+191820ms | 9969mm | -83dBm
+New remote max: 10424
+R: 307931ms | 10424mm | -81dBm
+New max: 10785
+192293ms | 10785mm | -83dBm
+New remote max: 10827
+R: 308403ms | 10827mm | -82dBm
+192777ms | 10747mm | -83dBm
+R: 308885ms | 10827mm | -81dBm
+New max: 10897
+193018ms | 10897mm | -82dBm
+New remote max: 11127
+R: 309125ms | 11127mm | -82dBm
+New max: 11104
+193487ms | 11104mm | -82dBm
+R: 309593ms | 11061mm | -81dBm
+193973ms | 11104mm | -84dBm
+New remote max: 11136
+R: 310077ms | 11136mm | -80dBm
+194448ms | 10803mm | -82dBm
+R: 310551ms | 10827mm | -82dBm
+194703ms | 10766mm | -83dBm
+R: 310805ms | 10714mm | -82dBm
+194945ms | 10953mm | -83dBm
+R: 311045ms | 11089mm | -82dBm
+New max: 11160
+195185ms | 11160mm | -83dBm
+R: 311285ms | 11118mm | -83dBm
+New max: 11347
+195653ms | 11347mm | -82dBm
+New remote max: 11343
+R: 311752ms | 11343mm | -82dBm
+New max: 11816
+196127ms | 11816mm | -86dBm
+New remote max: 11840
+R: 312224ms | 11840mm | -82dBm
+196596ms | 11816mm | -84dBm
+New remote max: 11877
+R: 312691ms | 11877mm | -83dBm
+New max: 12417
+197082ms | 12417mm | -83dBm
+New remote max: 12028
+R: 313175ms | 12028mm | -83dBm
+New max: 12567
+197554ms | 12567mm | -85dBm
+New remote max: 12440
+R: 313646ms | 12440mm | -82dBm
+New max: 13073
+198038ms | 13073mm | -90dBm
+New remote max: 12956
+R: 314128ms | 12956mm | -87dBm
+198506ms | 13036mm | -92dBm
+New remote max: 13557
+R: 314595ms | 13557mm | -88dBm
+New max: 13524
+198993ms | 13524mm | -92dBm
+New remote max: 13857
+R: 315080ms | 13857mm | -88dBm
+New max: 14039
+199464ms | 14039mm | -93dBm
+New remote max: 14410
+R: 315550ms | 14410mm | -90dBm
+199952ms | 13861mm | -94dBm
+R: 316035ms | 14381mm | -93dBm
+New max: 14827
+200192ms | 14827mm | -97dBm
+R: 316275ms | 14269mm | -95dBm
+200665ms | 14808mm | -97dBm
+Timeout
+New max: 14958
+200985ms | 14958mm | -101dBm
+New max: 15240
+201436ms | 15240mm | -98dBm
+New max: 16562
+202116ms | 16562mm | -99dBm
+New remote max: 16136
+R: 318192ms | 16136mm | -94dBm
+New remote max: 16576
+R: 318661ms | 16576mm | -95dBm
+New remote max: 17974
+R: 319582ms | 17974mm | -96dBm
+Timeout
+New max: 19451
+206563ms | 19451mm | -96dBm
+New remote max: 19540
+R: 322624ms | 19540mm | -98dBm
+New remote max: 19765
+R: 325119ms | 19765mm | -96dBm
+New max: 19489
+209564ms | 19489mm | -98dBm
+R: 325616ms | 18527mm | -97dBm
+Timeout
+210352ms | 18213mm | -97dBm
+R: 326401ms | 18264mm | -95dBm
+210607ms | 18025mm | -98dBm
+R: 327105ms | 18715mm | -97dBm
+R: 328469ms | 18855mm | -99dBm
+R: 329172ms | 18874mm | -98dBm
+213373ms | 19207mm | -98dBm
+R: 329412ms | 19212mm | -98dBm
+215451ms | 19414mm | -99dBm
+215674ms | 18888mm | -101dBm
+Timeout
+215994ms | 18701mm | -104dBm
+Timeout
+Timeout
+219345ms | 19301mm | -102dBm
+R: 335363ms | 18977mm | -99dBm
+R: 337405ms | 18612mm | -98dBm
+222087ms | 18607mm | -99dBm
+222314ms | 18982mm | -110dBm
+Timeout
+R: 343824ms | 18705mm | -98dBm
+228104ms | 18738mm | -97dBm
+R: 344543ms | 17814mm | -99dBm
+New max: 19639
+230154ms | 19639mm | 0dBm
+231517ms | 18325mm | -97dBm
+R: 347495ms | 17739mm | -98dBm
+R: 347959ms | 17514mm | -96dBm
+232224ms | 16900mm | -98dBm
+232904ms | 17087mm | -99dBm
+R: 348876ms | 16389mm | -96dBm
+233144ms | 16637mm | -96dBm
+R: 349116ms | 16239mm | -97dBm
+233385ms | 16234mm | -96dBm
+R: 349356ms | 16389mm | -95dBm
+233640ms | 16323mm | -99dBm
+R: 349610ms | 16173mm | -96dBm
+233881ms | 15986mm | -94dBm
+R: 349850ms | 15835mm | -95dBm
+234122ms | 16501mm | -94dBm
+R: 350090ms | 16061mm | -96dBm
+234362ms | 16023mm | -96dBm
+R: 350330ms | 15610mm | -95dBm
+234617ms | 16173mm | -95dBm
+R: 350584ms | 15986mm | -96dBm
+234858ms | 15385mm | -92dBm
+R: 350824ms | 16023mm | -94dBm
+235099ms | 15934mm | -96dBm
+R: 351064ms | 16136mm | -95dBm
+235340ms | 16084mm | -96dBm
+R: 351304ms | 15573mm | -94dBm
+235595ms | 15596mm | -97dBm
+R: 351559ms | 15610mm | -97dBm
+235837ms | 15972mm | -96dBm
+R: 351799ms | 16164mm | -96dBm
+236077ms | 16309mm | -98dBm
+R: 352039ms | 15864mm | -95dBm
+236318ms | 17613mm | -115dBm
+R: 352279ms | 15751mm | -96dBm
+236559ms | 15911mm | -97dBm
+R: 352519ms | 16201mm | -95dBm
+R: 352773ms | 16201mm | -95dBm
+237055ms | 16323mm | -97dBm
+R: 353013ms | 15976mm | -96dBm
+R: 353252ms | 16023mm | -97dBm
+Timeout
+
+[SENT] m
+
+* maxDistance: 19639
+* maxDistanceRemote: 19765
+New remote max: 26045
+R: 469855ms | 26045mm | -98dBm
+New remote max: 31167
+R: 473254ms | 31167mm | -100dBm
+New max: 32100
+358623ms | 32100mm | -102dBm
+New max: 32269
+359080ms | 32269mm | -97dBm
+New remote max: 32330
+R: 474630ms | 32330mm | -95dBm
+New max: 32569
+359566ms | 32569mm | -100dBm
+Timeout
+New remote max: 33081
+R: 475664ms | 33081mm | -98dBm
+New max: 33151
+360608ms | 33151mm | -99dBm
+New remote max: 33268
+R: 476152ms | 33268mm | -96dBm
+New max: 33339
+361079ms | 33339mm | -101dBm
+New remote max: 33390
+R: 476622ms | 33390mm | -97dBm
+New max: 33583
+361565ms | 33583mm | -93dBm
+New remote max: 33578
+R: 477106ms | 33578mm | -94dBm
+362038ms | 33583mm | -95dBm
+New remote max: 33625
+R: 477578ms | 33625mm | -96dBm
+362511ms | 33545mm | -96dBm
+R: 478049ms | 33625mm | -95dBm
+New max: 33658
+362752ms | 33658mm | -96dBm
+R: 478289ms | 33625mm | -94dBm
+New max: 33676
+363240ms | 33676mm | -93dBm
+R: 478776ms | 33587mm | -91dBm
+363713ms | 33601mm | -92dBm
+R: 479247ms | 33503mm | -89dBm
+363954ms | 33545mm | -90dBm
+R: 479487ms | 33578mm | -90dBm
+364209ms | 33545mm | -94dBm
+R: 479742ms | 33428mm | -95dBm
+364451ms | 33432mm | -97dBm
+R: 479982ms | 33418mm | -96dBm
+364691ms | 33395mm | -98dBm
+R: 480222ms | 33456mm | -96dBm
+364932ms | 33432mm | -96dBm
+R: 480462ms | 33531mm | -94dBm
+365187ms | 33508mm | -93dBm
+R: 480716ms | 33503mm | -93dBm
+365428ms | 33526mm | -95dBm
+R: 480956ms | 33428mm | -96dBm
+365669ms | 33301mm | -101dBm
+R: 481196ms | 33428mm | -96dBm
+365909ms | 33376mm | -98dBm
+R: 481436ms | 33306mm | -98dBm
+R: 481688ms | 33306mm | -97dBm
+R: 481927ms | 33493mm | -94dBm
+366643ms | 33620mm | -97dBm
+368454ms | 33432mm | -101dBm
+R: 483972ms | 33465mm | -97dBm
+New max: 33733
+368695ms | 33733mm | -101dBm
+R: 484212ms | 33203mm | -100dBm
+369181ms | 33695mm | -92dBm
+New remote max: 33803
+R: 484696ms | 33803mm | -94dBm
+New max: 34108
+369650ms | 34108mm | -88dBm
+New remote max: 34103
+R: 485164ms | 34103mm | -85dBm
+New max: 34145
+370135ms | 34145mm | -87dBm
+New remote max: 34216
+R: 485647ms | 34216mm | -86dBm
+New max: 34371
+370607ms | 34371mm | -88dBm
+New remote max: 34478
+R: 486118ms | 34478mm | -87dBm
+New max: 34708
+371093ms | 34708mm | -89dBm
+New remote max: 34779
+R: 486602ms | 34779mm | -86dBm
+New max: 35008
+371566ms | 35008mm | -89dBm
+New remote max: 35116
+R: 487073ms | 35116mm | -87dBm
+New max: 35271
+372039ms | 35271mm | -86dBm
+New remote max: 35304
+R: 487545ms | 35304mm | -85dBm
+372512ms | 35271mm | -89dBm
+R: 488016ms | 35229mm | -88dBm
+372752ms | 35271mm | -92dBm
+New remote max: 35332
+R: 488256ms | 35332mm | -91dBm
+373235ms | 35271mm | -89dBm
+R: 488737ms | 35332mm | -89dBm
+New max: 35365
+373476ms | 35365mm | -89dBm
+R: 488977ms | 35295mm | -89dBm
+373944ms | 35252mm | -93dBm
+R: 489444ms | 35295mm | -93dBm
+374200ms | 35290mm | -95dBm
+R: 489699ms | 35257mm | -94dBm
+374442ms | 35252mm | -94dBm
+R: 489939ms | 35295mm | -93dBm
+374682ms | 35290mm | -96dBm
+R: 490179ms | 35332mm | -93dBm
+374923ms | 35271mm | -96dBm
+R: 490419ms | 35182mm | -95dBm
+375178ms | 35121mm | -94dBm
+R: 490674ms | 35107mm | -96dBm
+375420ms | 35083mm | -97dBm
+R: 490915ms | 35219mm | -94dBm
+375662ms | 34933mm | -99dBm
+375884ms | 34933mm | -100dBm
+376112ms | 35271mm | -101dBm
+New remote max: 35435
+R: 491604ms | 35435mm | -98dBm
+376594ms | 35271mm | -101dBm
+R: 492084ms | 35360mm | -98dBm
+376834ms | 35196mm | -99dBm
+R: 492549ms | 35154mm | -99dBm
+R: 492802ms | 35229mm | -98dBm
+R: 492802ms | 35229mm | -98dBm
+New max: 35421
+378037ms | 35421mm | -101dBm
+R: 493523ms | 35266mm | -100dBm
+378520ms | 35271mm | -102dBm
+R: 494004ms | 35304mm | -99dBm
+378761ms | 35234mm | -99dBm
+R: 494244ms | 35257mm | -101dBm
+379002ms | 35196mm | -103dBm
+R: 494484ms | 35219mm | -100dBm
+379242ms | 35234mm | -99dBm
+R: 494724ms | 35370mm | -97dBm
+379497ms | 35384mm | -99dBm
+R: 494978ms | 35229mm | -97dBm
+379738ms | 35421mm | -97dBm
+R: 495218ms | 35416mm | -97dBm
+379979ms | 35384mm | -96dBm
+R: 495458ms | 35379mm | -95dBm
+380220ms | 35402mm | -97dBm
+New remote max: 35445
+R: 495698ms | 35445mm | -96dBm
+New max: 35477
+380708ms | 35477mm | -97dBm
+R: 496185ms | 35445mm | -96dBm
+381181ms | 35346mm | -97dBm
+New remote max: 35454
+R: 496656ms | 35454mm | -95dBm
+381648ms | 35421mm | -97dBm
+R: 497122ms | 35341mm | -96dBm
+381890ms | 35459mm | -97dBm
+R: 497362ms | 35370mm | -97dBm
+382130ms | 35309mm | -100dBm
+R: 497602ms | 35332mm | -97dBm
+382371ms | 35346mm | -98dBm
+R: 498068ms | 35370mm | -97dBm
+382853ms | 35309mm | -101dBm
+R: 498323ms | 35107mm | -98dBm
+R: 498562ms | 35069mm | -96dBm
+383334ms | 35196mm | -96dBm
+R: 498802ms | 35266mm | -93dBm
+383589ms | 35140mm | -96dBm
+R: 499056ms | 35266mm | -94dBm
+New max: 35590
+383844ms | 35590mm | -90dBm
+New remote max: 35632
+R: 499311ms | 35632mm | -93dBm
+New max: 35909
+384314ms | 35909mm | -88dBm
+New remote max: 36045
+R: 499778ms | 36045mm | -89dBm
+New max: 36359
+384786ms | 36359mm | -86dBm
+New remote max: 36467
+R: 500249ms | 36467mm | -87dBm
+New max: 36734
+385257ms | 36734mm | -91dBm
+New remote max: 36917
+R: 500718ms | 36917mm | -86dBm
+New max: 37072
+385729ms | 37072mm | -88dBm
+New remote max: 37218
+R: 501189ms | 37218mm | -87dBm
+New max: 37748
+386217ms | 37748mm | -96dBm
+New remote max: 37818
+R: 501675ms | 37818mm | -95dBm
+New max: 38123
+386684ms | 38123mm | -93dBm
+New remote max: 38231
+R: 502141ms | 38231mm | -89dBm
+New max: 38686
+387173ms | 38686mm | -88dBm
+New remote max: 38794
+R: 502627ms | 38794mm | -84dBm
+New max: 39061
+387640ms | 39061mm | -87dBm
+New remote max: 39169
+R: 503093ms | 39169mm | -83dBm
+New max: 39474
+388126ms | 39474mm | -89dBm
+New remote max: 39619
+R: 503577ms | 39619mm | -89dBm
+New max: 40036
+388596ms | 40036mm | -85dBm
+New remote max: 40144
+R: 504046ms | 40144mm | -86dBm
+New max: 40374
+389081ms | 40374mm | -90dBm
+New remote max: 40482
+R: 504530ms | 40482mm | -89dBm
+New max: 40712
+389554ms | 40712mm | -86dBm
+New remote max: 40782
+R: 505001ms | 40782mm | -85dBm
+New max: 41200
+390027ms | 41200mm | -89dBm
+New remote max: 41233
+R: 505473ms | 41233mm | -89dBm
+New max: 41650
+390501ms | 41650mm | -91dBm
+New remote max: 41795
+R: 505944ms | 41795mm | -86dBm
+New max: 42063
+390974ms | 42063mm | -88dBm
+New remote max: 42321
+R: 506416ms | 42321mm | -87dBm
+New max: 42663
+391459ms | 42663mm | -94dBm
+New remote max: 42846
+R: 506899ms | 42846mm | -94dBm
+New max: 43113
+391929ms | 43113mm | -92dBm
+New remote max: 43296
+R: 507368ms | 43296mm | -90dBm
+New max: 43601
+392415ms | 43601mm | -91dBm
+New remote max: 43859
+R: 507852ms | 43859mm | -91dBm
+New max: 44277
+392885ms | 44277mm | -105dBm
+Timeout
+New max: 44764
+393435ms | 44764mm | -98dBm
+New remote max: 44825
+R: 508868ms | 44825mm | -94dBm
+New max: 45140
+393903ms | 45140mm | -90dBm
+New remote max: 45313
+R: 509335ms | 45313mm | -89dBm
+New max: 45740
+394390ms | 45740mm | -89dBm
+New remote max: 45848
+R: 509821ms | 45848mm | -89dBm
+New max: 46153
+394862ms | 46153mm | -93dBm
+New remote max: 46336
+R: 510291ms | 46336mm | -91dBm
+New max: 46791
+395348ms | 46791mm | -90dBm
+New remote max: 46936
+R: 510776ms | 46936mm | -89dBm
+New max: 47278
+395821ms | 47278mm | -94dBm
+New remote max: 47386
+R: 511247ms | 47386mm | -94dBm
+New max: 47729
+396292ms | 47729mm | -98dBm
+New remote max: 47949
+R: 511716ms | 47949mm | -96dBm
+New max: 48367
+396765ms | 48367mm | -95dBm
+New max: 48892
+397221ms | 48892mm | -92dBm
+New remote max: 48887
+R: 512642ms | 48887mm | -94dBm
+New max: 49305
+397695ms | 49305mm | -95dBm
+New remote max: 49450
+R: 513114ms | 49450mm | -94dBm
+New max: 49830
+398166ms | 49830mm | -93dBm
+New remote max: 49863
+R: 513584ms | 49863mm | -95dBm
+New max: 50130
+398649ms | 50130mm | -98dBm
+New remote max: 50200
+R: 514065ms | 50200mm | -97dBm
+New max: 50355
+399121ms | 50355mm | -107dBm
+New remote max: 50651
+R: 514536ms | 50651mm | -97dBm
+New max: 50993
+399607ms | 50993mm | -95dBm
+New remote max: 51101
+R: 515020ms | 51101mm | -96dBm
+New remote max: 51767
+R: 515938ms | 51767mm | -95dBm
+New max: 51781
+401001ms | 51781mm | -98dBm
+New remote max: 51917
+R: 516409ms | 51917mm | -96dBm
+New max: 51969
+401484ms | 51969mm | -93dBm
+New remote max: 52002
+R: 516891ms | 52002mm | -94dBm
+New max: 52269
+401954ms | 52269mm | -94dBm
+New remote max: 52264
+R: 517359ms | 52264mm | -94dBm
+New max: 52382
+402425ms | 52382mm | -99dBm
+R: 517359ms | 52264mm | -94dBm
+New max: 52494
+402899ms | 52494mm | -98dBm
+New remote max: 52555
+R: 518301ms | 52555mm | -96dBm
+New max: 52682
+403371ms | 52682mm | -93dBm
+New remote max: 52668
+R: 518771ms | 52668mm | -92dBm
+New max: 52719
+403858ms | 52719mm | -94dBm
+New remote max: 52790
+R: 519256ms | 52790mm | -92dBm
+New max: 52832
+404328ms | 52832mm | -99dBm
+New remote max: 52940
+R: 519725ms | 52940mm | -93dBm
+New max: 52907
+404814ms | 52907mm | -96dBm
+R: 520210ms | 52940mm | -95dBm
+New max: 53169
+405286ms | 53169mm | -94dBm
+New remote max: 53240
+R: 520680ms | 53240mm | -93dBm
+405755ms | 53094mm | -99dBm
+R: 521148ms | 53127mm | -98dBm
+New max: 53207
+405997ms | 53207mm | -96dBm
+R: 521388ms | 53127mm | -95dBm
+406465ms | 53188mm | -95dBm
+R: 521855ms | 53099mm | -94dBm
+406720ms | 53113mm | -98dBm
+R: 522109ms | 53099mm | -97dBm
+406961ms | 53151mm | -99dBm
+R: 522349ms | 53099mm | -96dBm
+New max: 53226
+407202ms | 53226mm | -94dBm
+R: 522589ms | 53090mm | -96dBm
+407674ms | 53188mm | -96dBm
+R: 523060ms | 53165mm | -99dBm
+New max: 53263
+407929ms | 53263mm | -100dBm
+New remote max: 53343
+R: 523314ms | 53343mm | -100dBm
+New max: 53526
+408401ms | 53526mm | -98dBm
+New remote max: 53493
+R: 523784ms | 53493mm | -97dBm
+408873ms | 53507mm | -93dBm
+R: 523784ms | 53493mm | -97dBm
+New max: 53582
+409116ms | 53582mm | -94dBm
+New remote max: 53690
+R: 524496ms | 53690mm | -90dBm
+New max: 53864
+409586ms | 53864mm | -92dBm
+New remote max: 53915
+R: 524965ms | 53915mm | -91dBm
+New max: 54126
+410072ms | 54126mm | -94dBm
+New remote max: 54253
+R: 525450ms | 54253mm | -99dBm
+New remote max: 55566
+R: 527995ms | 55566mm | -100dBm
+New max: 55627
+413099ms | 55627mm | -98dBm
+New remote max: 55716
+R: 528466ms | 55716mm | -100dBm
+New max: 56040
+414262ms | 56040mm | -103dBm
+New remote max: 56631
+R: 530983ms | 56631mm | -100dBm
+New max: 56715
+416093ms | 56715mm | -98dBm
+New remote max: 56781
+R: 531450ms | 56781mm | -101dBm
+New max: 59140
+420403ms | 59140mm | -100dBm
+New remote max: 59258
+R: 535746ms | 59258mm | -101dBm
+New max: 59516
+421352ms | 59516mm | -105dBm
+New remote max: 59530
+R: 536691ms | 59530mm | -99dBm
+New max: 59703
+421825ms | 59703mm | -98dBm
+New remote max: 59680
+R: 537162ms | 59680mm | -94dBm
+New max: 59741
+422293ms | 59741mm | -101dBm
+New remote max: 59867
+R: 537629ms | 59867mm | -100dBm
+New max: 60078
+422779ms | 60078mm | -97dBm
+New remote max: 60168
+R: 538114ms | 60168mm | -96dBm
+New max: 60397
+423251ms | 60397mm | -97dBm
+New remote max: 60355
+R: 538584ms | 60355mm | -96dBm
+New max: 60660
+423724ms | 60660mm | -100dBm
+New remote max: 60655
+R: 539055ms | 60655mm | -98dBm
+New max: 60866
+424196ms | 60866mm | -99dBm
+New remote max: 60965
+R: 539525ms | 60965mm | -97dBm
+New max: 61129
+424668ms | 61129mm | -95dBm
+New remote max: 61190
+R: 539996ms | 61190mm | -93dBm
+New max: 61260
+425150ms | 61260mm | -95dBm
+New remote max: 61256
+R: 540476ms | 61256mm | -93dBm
+New max: 61373
+425622ms | 61373mm | -94dBm
+New remote max: 61443
+R: 540947ms | 61443mm | -93dBm
+New max: 61598
+426105ms | 61598mm | -94dBm
+New remote max: 61528
+R: 541428ms | 61528mm | -92dBm
+New max: 61636
+426578ms | 61636mm | -93dBm
+New remote max: 61678
+R: 541899ms | 61678mm | -90dBm
+427048ms | 61636mm | -92dBm
+R: 542368ms | 61640mm | -90dBm
+New max: 61673
+427289ms | 61673mm | -91dBm
+R: 542608ms | 61565mm | -91dBm
+427759ms | 61654mm | -91dBm
+R: 543076ms | 61678mm | -90dBm
+New max: 61729
+428014ms | 61729mm | -90dBm
+New remote max: 61715
+R: 543331ms | 61715mm | -90dBm
+New max: 61748
+428486ms | 61748mm | -92dBm
+New remote max: 61743
+R: 543801ms | 61743mm | -93dBm
+New max: 61786
+428959ms | 61786mm | -95dBm
+New remote max: 61819
+R: 544272ms | 61819mm | -95dBm
+New max: 61823
+429444ms | 61823mm | -100dBm
+New remote max: 62391
+R: 547238ms | 62391mm | -100dBm
+New max: 62424
+432419ms | 62424mm | -100dBm
+New remote max: 62541
+R: 547721ms | 62541mm | -100dBm
+New max: 62724
+432893ms | 62724mm | -97dBm
+New remote max: 62766
+R: 548192ms | 62766mm | -98dBm
+New max: 62799
+433363ms | 62799mm | -99dBm
+New remote max: 62954
+R: 548661ms | 62954mm | -92dBm
+New max: 63061
+433847ms | 63061mm | -94dBm
+New remote max: 63076
+R: 549143ms | 63076mm | -91dBm
+New max: 63249
+434317ms | 63249mm | -94dBm
+New remote max: 63263
+R: 549612ms | 63263mm | -92dBm
+R: 550317ms | 62991mm | -98dBm
+435491ms | 62761mm | -100dBm
+R: 552135ms | 62597mm | -98dBm
+437104ms | 62536mm | -98dBm
+R: 552390ms | 62409mm | -98dBm
+437346ms | 62499mm | -99dBm
+Timeout
+438562ms | 62461mm | -99dBm
+R: 553842ms | 62409mm | -98dBm
+R: 554081ms | 62522mm | -103dBm
+439057ms | 62499mm | -103dBm
+R: 554081ms | 62522mm | -103dBm
+Timeout
+441892ms | 62273mm | -105dBm
+444381ms | 62686mm | -99dBm
+R: 559641ms | 62775mm | -96dBm
+444621ms | 62724mm | -96dBm
+R: 559881ms | 62813mm | -97dBm
+444877ms | 62761mm | -99dBm
+R: 560136ms | 62850mm | -96dBm
+445119ms | 62822mm | -100dBm
+New max: 63587
+448511ms | 63587mm | -104dBm
+R: 560136ms | 62850mm | -96dBm
+New max: 66424
+452595ms | 66424mm | -102dBm
+New remote max: 66504
+R: 567826ms | 66504mm | -98dBm
+New max: 66575
+453066ms | 66575mm | -92dBm
+New remote max: 66617
+R: 568296ms | 66617mm | -90dBm
+New max: 66650
+453550ms | 66650mm | -90dBm
+New remote max: 66664
+R: 568779ms | 66664mm | -89dBm
+454020ms | 66575mm | -90dBm
+R: 569247ms | 66664mm | -89dBm
+New max: 66687
+454261ms | 66687mm | -89dBm
+R: 569487ms | 66654mm | -89dBm
+454746ms | 66575mm | -91dBm
+R: 569970ms | 66654mm | -89dBm
+454987ms | 66612mm | -90dBm
+R: 570210ms | 66626mm | -89dBm
+455227ms | 66575mm | -91dBm
+R: 570450ms | 66589mm | -90dBm
+455482ms | 66537mm | -93dBm
+R: 570704ms | 66551mm | -92dBm
+455724ms | 66612mm | -97dBm
+R: 570944ms | 66626mm | -98dBm
+455964ms | 66612mm | -96dBm
+R: 571184ms | 66626mm | -96dBm
+456205ms | 66537mm | -97dBm
+R: 571424ms | 66626mm | -95dBm
+456460ms | 66650mm | -96dBm
+R: 571679ms | 66551mm | -95dBm
+456702ms | 66575mm | -95dBm
+R: 571919ms | 66589mm | -94dBm
+456942ms | 66575mm | -95dBm
+R: 572159ms | 66626mm | -94dBm
+457183ms | 66612mm | -95dBm
+R: 572399ms | 66626mm | -93dBm
+457438ms | 66687mm | -94dBm
+R: 572653ms | 66626mm | -95dBm
+457679ms | 66650mm | -96dBm
+R: 572893ms | 66664mm | -95dBm
+457920ms | 66575mm | -96dBm
+R: 573133ms | 66664mm | -95dBm
+458160ms | 66575mm | -95dBm
+R: 573373ms | 66664mm | -95dBm
+458416ms | 66575mm | -96dBm
+New remote max: 66739
+R: 573628ms | 66739mm | -95dBm
+458888ms | 66668mm | -96dBm
+R: 574098ms | 66654mm | -93dBm
+459129ms | 66593mm | -97dBm
+R: 574338ms | 66654mm | -91dBm
+459385ms | 66668mm | -93dBm
+R: 574593ms | 66654mm | -93dBm
+New max: 66706
+459640ms | 66706mm | -94dBm
+R: 574848ms | 66560mm | -92dBm
+460111ms | 66668mm | -94dBm
+R: 575317ms | 66636mm | -94dBm
+460352ms | 66612mm | -95dBm
+R: 575557ms | 66664mm | -93dBm
+460607ms | 66537mm | -95dBm
+R: 575811ms | 66701mm | -94dBm
+460848ms | 66687mm | -95dBm
+R: 576051ms | 66701mm | -95dBm
+461103ms | 66668mm | -95dBm
+R: 576305ms | 66692mm | -94dBm
+New max: 66743
+461343ms | 66743mm | -94dBm
+R: 576545ms | 66692mm | -95dBm
+461827ms | 66650mm | -96dBm
+R: 577026ms | 66664mm | -94dBm
+462067ms | 66612mm | -91dBm
+R: 577266ms | 66626mm | -90dBm
+462308ms | 66612mm | -91dBm
+R: 577506ms | 66701mm | -90dBm
+462564ms | 66612mm | -93dBm
+R: 577761ms | 66598mm | -90dBm
+462819ms | 66612mm | -93dBm
+R: 578016ms | 66598mm | -92dBm
+463061ms | 66687mm | -92dBm
+R: 578256ms | 66673mm | -91dBm
+463301ms | 66725mm | -91dBm
+R: 578496ms | 66701mm | -92dBm
+463542ms | 66687mm | -92dBm
+R: 578736ms | 66701mm | -91dBm
+463797ms | 66687mm | -92dBm
+R: 578990ms | 66701mm | -92dBm
+464038ms | 66743mm | -93dBm
+New remote max: 66776
+R: 579231ms | 66776mm | -90dBm
+464510ms | 66706mm | -91dBm
+R: 579700ms | 66701mm | -90dBm
+New max: 66818
+464750ms | 66818mm | -91dBm
+R: 579940ms | 66701mm | -90dBm
+465235ms | 66743mm | -90dBm
+R: 580423ms | 66701mm | -89dBm
+465476ms | 66612mm | -94dBm
+R: 580663ms | 66664mm | -93dBm
+465717ms | 66612mm | -95dBm
+R: 580903ms | 66626mm | -95dBm
+465972ms | 66612mm | -97dBm
+R: 581158ms | 66626mm | -96dBm
+466214ms | 66650mm | -96dBm
+R: 581398ms | 66664mm | -96dBm
+466454ms | 66575mm | -97dBm
+R: 581638ms | 66626mm | -95dBm
+466695ms | 66462mm | -97dBm
+R: 581878ms | 66589mm | -94dBm
+466950ms | 66575mm | -95dBm
+R: 582132ms | 66589mm | -95dBm
+467191ms | 66575mm | -96dBm
+R: 582372ms | 66626mm | -95dBm
+467432ms | 66575mm | -96dBm
+R: 582612ms | 66551mm | -95dBm
+467672ms | 66575mm | -96dBm
+R: 582852ms | 66739mm | -95dBm
+467928ms | 66537mm | -96dBm
+R: 583107ms | 66551mm | -95dBm
+468170ms | 66537mm | -96dBm
+R: 583348ms | 66626mm | -95dBm
+468411ms | 66612mm | -95dBm
+R: 583588ms | 66626mm | -95dBm
+468652ms | 66612mm | -96dBm
+R: 583828ms | 66626mm | -95dBm
+468907ms | 66650mm | -95dBm
+R: 584083ms | 66739mm | -92dBm
+469149ms | 66725mm | -90dBm
+New remote max: 66786
+R: 584324ms | 66786mm | -90dBm
+New max: 66875
+469618ms | 66875mm | -96dBm
+New remote max: 66898
+R: 584791ms | 66898mm | -96dBm
+New remote max: 67311
+R: 585498ms | 67311mm | -100dBm
+New remote max: 67827
+R: 586192ms | 67827mm | -97dBm
+New remote max: 68090
+R: 586659ms | 68090mm | -99dBm
+New remote max: 68727
+R: 587349ms | 68727mm | -101dBm
+New max: 69070
+472656ms | 69070mm | -101dBm
+Timeout
+New remote max: 70219
+R: 589086ms | 70219mm | -101dBm
+New max: 70327
+474400ms | 70327mm | -101dBm
+New remote max: 70444
+R: 589556ms | 70444mm | -100dBm
+New max: 70702
+474870ms | 70702mm | -100dBm
+R: 589556ms | 70444mm | -100dBm
+New max: 76255
+481447ms | 76255mm | -103dBm
+New max: 76668
+481904ms | 76668mm | -106dBm
+New remote max: 79759
+R: 600420ms | 79759mm | -101dBm
+New remote max: 82358
+R: 603396ms | 82358mm | -101dBm
+New remote max: 84243
+R: 605451ms | 84243mm | -102dBm
+New max: 89482
+495597ms | 89482mm | -102dBm
+New remote max: 89524
+R: 610680ms | 89524mm | -97dBm
+New max: 90008
+496083ms | 90008mm | -98dBm
+New remote max: 90087
+R: 611163ms | 90087mm | -96dBm
+New max: 90458
+496553ms | 90458mm | -98dBm
+New remote max: 90584
+R: 611632ms | 90584mm | -98dBm
+New max: 90946
+497039ms | 90946mm | -101dBm
+New max: 91734
+497713ms | 91734mm | -102dBm
+New remote max: 91823
+R: 612788ms | 91823mm | -100dBm
+New max: 92071
+498199ms | 92071mm | -101dBm
+New remote max: 92160
+R: 613272ms | 92160mm | -98dBm
+Timeout
+New max: 92559
+498988ms | 92559mm | -102dBm
+New remote max: 92676
+R: 614059ms | 92676mm | -99dBm
+New max: 92897
+499460ms | 92897mm | -101dBm
+New remote max: 92864
+R: 614529ms | 92864mm | -101dBm
+499934ms | 92822mm | -91dBm
+R: 615002ms | 92864mm | -91dBm
+500176ms | 92859mm | -92dBm
+New remote max: 92873
+R: 615242ms | 92873mm | -93dBm
+500647ms | 92822mm | -98dBm
+R: 615712ms | 92836mm | -95dBm
+500902ms | 92822mm | -97dBm
+R: 615966ms | 92826mm | -94dBm
+501143ms | 92822mm | -97dBm
+New remote max: 92902
+R: 616206ms | 92902mm | -95dBm
+501614ms | 92897mm | -97dBm
+New remote max: 92930
+R: 616675ms | 92930mm | -96dBm
+502098ms | 92859mm | -98dBm
+R: 617158ms | 92930mm | -97dBm
+502339ms | 92859mm | -97dBm
+R: 617398ms | 92817mm | -97dBm
+502580ms | 92822mm | -98dBm
+R: 617638ms | 92930mm | -95dBm
+502821ms | 92897mm | -95dBm
+New remote max: 92967
+R: 617878ms | 92967mm | -92dBm
+New max: 92934
+503306ms | 92934mm | -98dBm
+New remote max: 93211
+R: 618815ms | 93211mm | -101dBm
+New remote max: 93361
+R: 619296ms | 93361mm | -103dBm
+New max: 93722
+504715ms | 93722mm | -97dBm
+New remote max: 93802
+R: 619766ms | 93802mm | -97dBm
+New max: 94173
+505186ms | 94173mm | -96dBm
+New remote max: 94177
+R: 620235ms | 94177mm | -98dBm
+Timeout
+New max: 95674
+506654ms | 95674mm | -101dBm
+New remote max: 96480
+R: 622377ms | 96480mm | -100dBm
+New max: 96931
+507807ms | 96931mm | -102dBm
+New remote max: 97006
+R: 622847ms | 97006mm | -101dBm
+New max: 97306
+508291ms | 97306mm | -101dBm
+New remote max: 98052
+R: 624010ms | 98052mm | -100dBm
+New max: 98488
+509685ms | 98488mm | -100dBm
+Timeout
+New max: 98938
+510462ms | 98938mm | -105dBm
+New max: 99088
+511143ms | 99088mm | -102dBm
+New remote max: 99069
+R: 626172ms | 99069mm | -100dBm
+511616ms | 99051mm | -104dBm
+R: 626642ms | 98957mm | -100dBm
+511856ms | 99051mm | -103dBm
+R: 626882ms | 99065mm | -98dBm
+512111ms | 99051mm | -101dBm
+R: 627136ms | 99027mm | -98dBm
+New max: 99126
+512352ms | 99126mm | -100dBm
+R: 627376ms | 99065mm | -101dBm
+New remote max: 99140
+R: 630146ms | 99140mm | -101dBm
+515617ms | 99112mm | -102dBm
+R: 630629ms | 99140mm | -100dBm
+R: 630868ms | 99055mm | -102dBm
+New max: 99149
+516097ms | 99149mm | -105dBm
+
+[SENT] p
+
+maxDistance: 99149
+remoteMaxDistance: 99140
+
+[SENT] m
+
+* maxDistance: 99149
+* maxDistanceRemote: 99140

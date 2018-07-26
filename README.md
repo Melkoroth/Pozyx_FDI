@@ -50,6 +50,22 @@ A typical output would be:
 ## Max range 
 The aim of this experiment is to test the maximum distance at which two given tags can communicate through UltraWideBand.
 
+The settings of the tags were as follows:
+```
+Channel: 5 | Gain: 33.00dB | Bitrate: 110kbits/s | Pulse repetition: 64MHz | Preamble length: 1024 symbols
+```
+
+It was observed that for the system to work correctly it's neccessary to give a good supply of current to the devices. 
+
+Real-life tests were conducted while maintaining line of sight. Its results can be seen in the enclosed .txt's.
+
+The maxes obtained were:
+```
+maxDistance: 99149
+remoteMaxDistance: 99140
+```
+A range of almost 100m was obtained. Both tags gave the same distance with mms of difference between them.
+
 ---
 
 ## More info:

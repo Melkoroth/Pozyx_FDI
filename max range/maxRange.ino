@@ -47,9 +47,10 @@ void setup() {
 
   Serial.begin(115200);
   //Waits for usb connection before continuing
-  while (!Serial);
+  //while (!Serial);
   Serial.println();
   Serial.println(F(".::[ Pozyx max range experiment - Juan L. Pérez Díez ]::."));
+  Serial.println(F(".::[ Universidad Complutense de Madrid - Facultad de Informática ]::."));
   
   initFS(&failInit);
   initPozyx(&failInit);
