@@ -19,9 +19,9 @@ boolean use_processing = true;                         // set this to true to ou
 
 const uint8_t num_anchors = 4;                                    // the number of anchors
 uint16_t anchors[num_anchors] = {0x6928, 0x6958, 0x6e2e, 0x6e5b};     // the network id of the anchors: change these to the network ids of your anchors.
-int32_t anchors_x[num_anchors] = {1582, 1372, 9737, 9527};               // anchor x-coorindates in mm
-int32_t anchors_y[num_anchors] = {10132, 1816, 3812, 9226};                  // anchor y-coordinates in mm
-int32_t heights[num_anchors] = {1700, 2050, 2300, 2290};              // anchor z-coordinates in mm
+int32_t anchors_x[num_anchors] = {34668, 34875, 31395, 31591};               // anchor x-coorindates in mm
+int32_t anchors_y[num_anchors] = {29081, 43540, 43540, 26993};                  // anchor y-coordinates in mm
+int32_t heights[num_anchors] = {2100, 1980, 2100, 1850};              // anchor z-coordinates in mm
 
 uint8_t algorithm = POZYX_POS_ALG_UWB_ONLY;             // positioning algorithm to use
 uint8_t dimension = POZYX_3D;                           // positioning dimension
@@ -32,6 +32,8 @@ int32_t height = 1000;                                  // height of device, req
 
 void setup(){
   Serial.begin(115200);
+  //Stops program until serial is opened
+  while (!Serial);
 
   if(Pozyx.begin() == POZYX_FAILURE) {
     Serial.println(F("ERROR: Unable to connect to POZYX shield"));
@@ -64,8 +66,8 @@ void loop(){
     coordinates_t position;
     int status = Pozyx.doRemotePositioning(tags[i], &position, dimension, height, algorithm);
     if (status == POZYX_SUCCESS) {
-    // prints out the result
-    printCoordinates(position, tags[i]);
+      // prints out the result
+      printCoordinates(position, tags[i]);
     } else {
       // prints out the error code
       printErrorCode("positioning", tags[i]);

@@ -83,7 +83,7 @@ void setup(){
 void draw(){
   background(126,161,172);
   fill(0,0,0);
-  text("(c) Pozyx Labs", width-100, 20);      
+  text("(c) Facultad de Informática - Universidad Complutense de Madrid", width-100, 20);      
   drawMap();
 }
   
